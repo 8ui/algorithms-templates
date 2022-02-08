@@ -13,20 +13,17 @@ _reader.on('line', line => {
 
 process.stdin.on('end', solve);
 
-function checkParity(a, b, c) {
-    // Ваше решение
+function evaluateFunction(x, a, b, c) {
+    return a * (x * x) + b * x + c;
 }
 
 function solve() {
     const inputNumbers = readArray();
     const a = inputNumbers[0]
-    const b = inputNumbers[1]
-    const c = inputNumbers[2]
-    if (checkParity(a, b, c)) {
-        process.stdout.write("WIN");
-    } else {
-        process.stdout.write("FAIL");
-    }
+    const x = inputNumbers[1]
+    const b = inputNumbers[2]
+    const c = inputNumbers[3]
+    process.stdout.write(`${evaluateFunction(x, a, b, c)}`);
 }
 
 function readInt() {

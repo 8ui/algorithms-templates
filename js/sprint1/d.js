@@ -15,6 +15,28 @@ process.stdin.on('end', solve);
 
 function getWeatherRandomness(temperatures) {
     // Ваше решение
+    let count = 0;
+    for (let i = 0; i < temperatures.length; i += 1) {
+        const left = temperatures[i - 1];
+        const center = temperatures[i]
+        const right = temperatures[i + 1];
+        if (left === undefined && right === undefined) {
+            count += 1;
+            continue;
+        }
+        if (left === undefined && right < center) {
+            count += 1;
+            continue;
+        }
+        if (right === undefined && left < center) {
+            count += 1;
+            continue;
+        }
+        if (left < center && center > right) {
+            count += 1;
+        }
+    }
+    return count;
 }
 
 function solve() {

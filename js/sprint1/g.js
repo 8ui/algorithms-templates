@@ -13,17 +13,20 @@ _reader.on('line', line => {
 
 process.stdin.on('end', solve);
 
-function evaluateFunction(x, a, b, c) {
+function getBinaryNumber(number) {
     // Ваше решение
+    let num = number;
+    let result = ""
+    while(num >= 1){
+        result = Math.floor(num % 2).toString() + result;
+        num = num/2
+    }
+    return result
 }
 
 function solve() {
-    const inputNumbers = readArray();
-    const a = inputNumbers[0]
-    const x = inputNumbers[1]
-    const b = inputNumbers[2]
-    const c = inputNumbers[3]
-    process.stdout.write(`${evaluateFunction(x, a, b, c)}`);
+    const n = readInt();
+    process.stdout.write(`${getBinaryNumber(n)}`);
 }
 
 function readInt() {
@@ -31,6 +34,13 @@ function readInt() {
     _curLine++;
     return n;
 }
+
+function readLine() {
+    const line = _inputLines[_curLine];
+    _curLine++;
+    return line;
+}
+
 
 function readArray() {
     var arr = _inputLines[_curLine].trim(" ").split(" ").map(num => Number(num));

@@ -13,13 +13,21 @@ _reader.on('line', line => {
 
 process.stdin.on('end', solve);
 
-function getBinaryNumber(number) {
+function getLongestWord(length, line) {
     // Ваше решение
+    const r = line.split(/\s/)
+      .sort((a, b) => a.length > b.length ? -1 : (a.length === b.length ? 0 : 1))
+
+    return r[0];
 }
 
 function solve() {
-    const n = readInt();
-    process.stdout.write(`${getBinaryNumber(n)}`);
+    const length = readInt();
+    const line = readLine();
+    const longestWord = getLongestWord(length, line)
+    process.stdout.write(`${longestWord}`);
+    process.stdout.write("\n");
+    process.stdout.write(`${longestWord.length}`);
 }
 
 function readInt() {
@@ -33,7 +41,6 @@ function readLine() {
     _curLine++;
     return line;
 }
-
 
 function readArray() {
     var arr = _inputLines[_curLine].trim(" ").split(" ").map(num => Number(num));

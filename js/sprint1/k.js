@@ -13,14 +13,17 @@ _reader.on('line', line => {
 
 process.stdin.on('end', solve);
 
-function sumOfBinaries(firstNumber, secondNumber) {
+function getSum(listNumber, number) {
     // Ваше решение
+    return (Number(listNumber.join("")) + number).toString().split("")
 }
 
 function solve() {
-    const firstNumber = readLine();
-    const secondNumber = readLine();
-    process.stdout.write(`${sumOfBinaries(firstNumber, secondNumber)}`);
+    const length = readInt();
+    const listNumber = readArray()
+    const number = readInt();
+
+    process.stdout.write(`${getSum(listNumber, number).join(' ')}`);
 }
 
 function readInt() {
@@ -33,10 +36,4 @@ function readArray() {
     var arr = _inputLines[_curLine].trim(" ").split(" ").map(num => Number(num));
     _curLine++;
     return arr;
-}
-
-function readLine() {
-    const line = _inputLines[_curLine];
-    _curLine++;
-    return line;
 }

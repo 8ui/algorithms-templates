@@ -13,14 +13,33 @@ _reader.on('line', line => {
 
 process.stdin.on('end', solve);
 
-function getExcessiveLetter(firstLine, secondLine) {
+function sumOfBinaries(a, b) {
     // Ваше решение
+    let result = ""
+    let carry = 0;
+
+    while(a || b || carry){
+        let sum = +a.slice(-1) + +b.slice(-1) + carry;
+
+        if(sum > 1) {
+            result = sum % 2 + result;
+            carry = 1;
+        } else {
+            result = sum + result;
+            carry = 0;
+        }
+
+        a = a.slice(0, -1)
+        b = b.slice(0, -1)
+    }
+
+    return result;
 }
 
 function solve() {
-    const firstLine = readLine();
-    const secondLine = readLine();
-    process.stdout.write(`${getExcessiveLetter(firstLine, secondLine)}`);
+    const firstNumber = readLine();
+    const secondNumber = readLine();
+    process.stdout.write(`${sumOfBinaries(firstNumber, secondNumber)}`);
 }
 
 function readInt() {

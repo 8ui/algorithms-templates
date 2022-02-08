@@ -13,16 +13,22 @@ _reader.on('line', line => {
 
 process.stdin.on('end', solve);
 
-function getSum(listNumber, number) {
+function getExcessiveLetter(firstLine, secondLine) {
     // Ваше решение
+    const arr = secondLine.split("")
+
+    for (let i = 0; i < firstLine.length; i += 1) {
+        if (arr.indexOf(firstLine[i]) !== -1) {
+            arr.splice(arr.indexOf(firstLine[i]), 1);
+        }
+    }
+    return arr[0];
 }
 
 function solve() {
-    const length = readInt();
-    const listNumber = readArray()
-    const number = readInt();
-
-    process.stdout.write(`${getSum(listNumber, number).join(' ')}`);
+    const firstLine = readLine();
+    const secondLine = readLine();
+    process.stdout.write(`${getExcessiveLetter(firstLine, secondLine)}`);
 }
 
 function readInt() {
@@ -35,4 +41,10 @@ function readArray() {
     var arr = _inputLines[_curLine].trim(" ").split(" ").map(num => Number(num));
     _curLine++;
     return arr;
+}
+
+function readLine() {
+    const line = _inputLines[_curLine];
+    _curLine++;
+    return line;
 }

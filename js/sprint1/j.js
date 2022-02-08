@@ -15,6 +15,23 @@ process.stdin.on('end', solve);
 
 function factorize(number) {
     // Ваше решение
+    let divider = 2;
+    let num = number;
+    let rem = 1;
+    const r = []
+
+    while (rem < number) {
+        if (num % divider === 0) {
+            num /= divider;
+            rem = rem * divider;
+            r.push(divider);
+            divider = 2;
+        } else {
+            if (divider >= number / 2) divider = number;
+            else divider += divider === 2 ? 1 : 2;
+        }
+    }
+    return r;
 }
 
 function solve() {

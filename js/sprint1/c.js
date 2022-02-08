@@ -13,8 +13,22 @@ _reader.on('line', line => {
 
 process.stdin.on('end', solve);
 
+function getIndex(matrix, x, y) {
+    if (matrix[x]) return matrix[x][y]
+    return undefined;
+}
+
 function getNeighbours(matrix, row, col) {
-    // Ваше решение
+    const r = []
+    // top
+    if (getIndex(matrix, row - 1, col) !== undefined) r.push(matrix[row - 1][col])
+    // left
+    if (matrix[row][col - 1] !== undefined) r.push(matrix[row][col - 1])
+    // right
+    if (matrix[row][col + 1] !== undefined) r.push(matrix[row][col + 1])
+    // bottom
+    if (getIndex(matrix, row + 1, col) !== undefined) r.push(matrix[row + 1][col])
+    return r.sort((a, b) => a > b ? 1 : (a === b ? 0 : -1));
 }
 
 function solve() {

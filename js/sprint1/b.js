@@ -13,16 +13,21 @@ _reader.on('line', line => {
 
 process.stdin.on('end', solve);
 
-function isPowerOfFour(number) {
-    // Ваше решение
+function checkParity(a, b, c) {
+    const rem = Math.abs(a % 2);
+    if (rem !== Math.abs(b % 2)) return false;
+    return rem === Math.abs(c % 2);
 }
 
 function solve() {
-    const number = readInt();
-    if (isPowerOfFour(number)) {
-        console.log("True");
+    const inputNumbers = readArray();
+    const a = inputNumbers[0]
+    const b = inputNumbers[1]
+    const c = inputNumbers[2]
+    if (checkParity(a, b, c)) {
+        process.stdout.write("WIN");
     } else {
-        console.log("False");
+        process.stdout.write("FAIL");
     }
 }
 

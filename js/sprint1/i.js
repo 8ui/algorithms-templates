@@ -13,29 +13,28 @@ _reader.on('line', line => {
 
 process.stdin.on('end', solve);
 
-function getLongestWord(length, line) {
+function isPowerOfFour(number) {
     // Ваше решение
+    while (number > 1) {
+        number /= 4
+        if (number % 1 > 0) return false;
+    }
+    return true;
 }
 
 function solve() {
-    const length = readInt();
-    const line = readLine();
-    const longestWord = getLongestWord(length, line)
-    process.stdout.write(`${longestWord}`);
-    process.stdout.write("\n");
-    process.stdout.write(`${longestWord.length}`);
+    const number = readInt();
+    if (isPowerOfFour(number)) {
+        console.log("True");
+    } else {
+        console.log("False");
+    }
 }
 
 function readInt() {
     const n = Number(_inputLines[_curLine]);
     _curLine++;
     return n;
-}
-
-function readLine() {
-    const line = _inputLines[_curLine];
-    _curLine++;
-    return line;
 }
 
 function readArray() {

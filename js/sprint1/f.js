@@ -15,6 +15,14 @@ process.stdin.on('end', solve);
 
 function isPalindrome(line) {
     // Ваше решение
+    const l = line.replace(/[^A-z]/g, "").toLowerCase();
+    let action = true;
+
+    for (let i = 0; i <= l.length / 2 + 0.5; i++) {
+        if (l.length - 1 - i > l.length / 2) continue;
+        if (l[i] !== l[l.length - 1 - i]) action = false;
+    }
+    return action;
 }
 
 function solve() {
